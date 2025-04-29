@@ -9,9 +9,13 @@
   <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </head>
 <body>
+  pick a repository full of flash games(swfs) here, type default for the default repository
+  <input type="text" id="repoUrl" placeholder="default">
+  <button onclick="fetchTextBoxValue()">change swf url</button>
+  <br>
   <label for="swf-select">pick flash game</label>
   <select id="swf-select">
-    <option value="">Select a file</option>
+    <option value="">pick a file</option>
   </select>
   <div id='ruffle' class="gameloc"></div>
   <script>
@@ -35,55 +39,84 @@
     };
 
     document.addEventListener('DOMContentLoaded', function () {
-  // Fetch the list of SWF files from the specified URL
-  fetch('https://api.github.com/repos/jonasrhee1208wastaken/cacheoswf/contents')
-    .then(response => response.json())
-    .then(data => {
-      // Populate the dropdown menu with the SWF file names
+      fetch('https://api.github.com/repos/jonasrhee1208wastaken/cacheoswf/contents')
+        .then(response => response.json())
+        .then(data => {
+          const swfSelect = document.getElementById('swf-select');
+          data.forEach(file => {
+            if (file.name.endsWith('.swf')) {
+              const option = document.createElement('option');
+              option.value = file.download_url;
+              option.text = file.name;
+              swfSelect.add(option);
+            }
+          });
+
+          swfSelect.addEventListener('change', () => {
+            const selectedUrl = swfSelect.value;
+            if (selectedUrl) {
+              swfobject.embedSWF(selectedUrl, 'ruffle', 800, 600);
+            }
+          });
+
+          swfSelect.addEventListener('scroll', () => {
+            if (swfSelect.scrollTop + swfSelect.offsetHeight >= swfSelect.scrollHeight) {
+              const nextPageUrl = data[data.length - 1].url;
+              fetch(nextPageUrl)
+                .then(response => response.json())
+                .then(nextPageData => {
+                  nextPageData.forEach(file => {
+                    if (file.name.endsWith('.swf')) {
+                      const option = document.createElement('option');
+                      option.value = file.download_url;
+                      option.text = file.name;
+                      swfSelect.add(option);
+                    }
+                  });
+                })
+                .catch(error => console.error(error));
+            }
+          });
+        })
+        .catch(error => console.error(error));
+    });
+
+    function fetchTextBoxValue() {
+      const textBox = document.getElementById('repoUrl');
+      const textBoxValue = textBox.value;
       const swfSelect = document.getElementById('swf-select');
-      data.forEach(file => {
-        if (file.name.endsWith('.swf')) {
-          const option = document.createElement('option');
-          option.value = file.download_url;
-          option.text = file.name;
-          swfSelect.add(option);
-        }
-      });
+      swfSelect.innerHTML = '<option value="">pick a file</option>'; // Clear existing options
 
-      // Add an event listener to the dropdown menu
-      swfSelect.addEventListener('change', () => {
-        const selectedUrl = swfSelect.value;
-        if (selectedUrl) {
-          swfobject.embedSWF(selectedUrl, 'ruffle', 800, 600);
-        }
-      });
-
-      // Add an event listener to the dropdown menu's scroll event
-      swfSelect.addEventListener('scroll', () => {
-        // Check if the user has scrolled to the bottom of the dropdown menu
-        if (swfSelect.scrollTop + swfSelect.offsetHeight >= swfSelect.scrollHeight) {
-          // Fetch the next batch of SWF files from the API
-          const nextPageUrl = data[data.length - 1].url;
-          fetch(nextPageUrl)
-            .then(response => response.json())
-            .then(nextPageData => {
-              // Populate the dropdown menu with the new SWF file names
-              nextPageData.forEach(file => {
-                if (file.name.endsWith('.swf')) {
-                  const option = document.createElement('option');
-                  option.value = file.download_url;
-                  option.text = file.name;
-                  swfSelect.add(option);
-                }
-              });
-            })
-            .catch(error => console.error(error));
-        }
-      });
-    })
-    .catch(error => console.error(error));
-});
-
+      if (textBoxValue === 'default') {
+        fetch('https://api.github.com/repos/jonasrhee1208wastaken/cacheoswf/contents')
+          .then(response => response.json())
+          .then(data => {
+            data.forEach(file => {
+              if (file.name.endsWith('.swf')) {
+                const option = document.createElement('option');
+                option.value = file.download_url;
+                option.text = file.name;
+                swfSelect.add(option);
+              }
+            });
+          })
+          .catch(error => console.error(error));
+      } else {
+        fetch(textBoxValue)
+          .then(response => response.json())
+          .then(data => {
+            data.forEach(file => {
+              if (file.name.endsWith('.swf')) {
+                const option = document.createElement('option');
+                option.value = file.download_url;
+                option.text = file.name;
+                swfSelect.add(option);
+              }
+            });
+          })
+          .catch(error => console.error(error));
+      }
+    }
   </script>
 <a href="index.html">main menu</a>
 </body>
