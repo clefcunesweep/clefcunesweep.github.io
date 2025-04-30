@@ -20,6 +20,10 @@
     <option value="">pick a file</option>
   </select>
   <div id='ruffle' class="gameloc"></div>
+  <br>
+  <label for="file-upload">alternatively, upload an swf file</label>
+  <input type="file" id="file-upload" accept=".swf">
+  <button onclick="uploadSWF()">upload it</button>
   <script>
     var swfobject = {};
     var isEmbedded = false;
@@ -117,6 +121,28 @@
             });
           })
           .catch(error => console.error(error));
+      }
+    }
+
+    function uploadSWF() {
+      const fileInput = document.getElementById('file-upload');
+      const file = fileInput.files[0];
+      if (file && file.name.endsWith('.swf')) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('YOUR_UPLOAD_ENDPOINT', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Upload successful:', data);
+          // Optionally, refresh the file list or handle the response
+        })
+        .catch(error => console.error('Upload error:', error));
+      } else {
+        alert('Please select a valid SWF file.');
       }
     }
   </script>
