@@ -32,18 +32,27 @@
     var swfobject = {};
     var isEmbedded = false;
 
-    swfobject.embedSWF = function(url, cont, width, height){
+swfobject.embedSWF = function(url, cont, width, height) {
+    var ruffle = window.RufflePlayer.newest();
+    
+    // Check if a player is already embedded
+    if (isEmbedded) {
+        // Remove the existing player
+        const existingPlayer = document.getElementById(cont).firstChild;
+        if (existingPlayer) {
+            existingPlayer.remove();
+        }
+    }
 
-        var ruffle = window.RufflePlayer.newest();
-        var player = Object.assign(document.getElementById(cont).appendChild(ruffle.createPlayer()), {
-            width: width,
-            height: height,
-            style: 'width: ' + width + 'px; height: ' + height + 'px',
-        });
+    var player = Object.assign(document.getElementById(cont).appendChild(ruffle.createPlayer()), {
+        width: width,
+        height: height,
+        style: 'width: ' + width + 'px; height: ' + height + 'px',
+    });
 
-        player.load({ url: url });
-        isEmbedded = true;
-    };
+    player.load({ url: url });
+    isEmbedded = true;
+};
 
     document.addEventListener('DOMContentLoaded', function () {
       fetch('https://api.github.com/repos/jonasrhee1208wastaken/cacheoswf/contents')
