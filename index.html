@@ -1,3 +1,41 @@
+<!DOCTYPE html>
 <html>
-  fuckard
+<head>
+  <title>My Firebase App</title>
+</head>
+<body>
+  <!-- Your app's HTML content -->
+  <form>
+    <label for="input1">username</label>
+    <input type="text" id="username" name="username"><br>
+    <label for="input2">password</label>
+    <input type="text" id="password" name="password"><br>
+    <input type="submit" value="Submit">
+  </form>
+  <!-- Load Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
+      authDomain: "sleeper-games-ce01e.firebaseapp.com",
+      databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
+      projectId: "sleeper-games-ce01e",
+      storageBucket: "sleeper-games-ce01e.firebasestorage.app",
+      messagingSenderId: "337164805904",
+      appId: "1:337164805904:web:a9ed1c181617415ec26795",
+      measurementId: "G-X0VQ79BHZ0"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the Realtime Database
+    const database = firebase.database();
+    const rootRef = database.ref();
+  </script>
+</body>
 </html>
+
