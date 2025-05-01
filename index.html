@@ -13,20 +13,6 @@
     <input type="text" id="password" name="password"><br>
     <button id="submitButton">login/signup</button>
   </div>
-  <script>
-    // Get the button element
-    const button = document.getElementById('submitButton');
-
-    // Add an event listener to the button's click event
-    button.addEventListener('click', function() {
-      // Get the values of the input fields
-      const input1 = document.getElementById('username').value;
-      const input2 = document.getElementById('password').value;
-
-      // Alert the input values
-      alert(`username: ${input1}\npassword: ${input2}`);
-    });
-  </script>
   <!-- Load Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -50,6 +36,44 @@
     // Get a reference to the Realtime Database
     const database = firebase.database();
     const rootRef = database.ref();
+
+    // Get the button element
+    const button = document.getElementById('submitButton');
+    // Add an event listener to the button's click event
+    button.addEventListener('click', function() {
+      // Get the values of the input fields
+      const input1 = document.getElementById('username').value;
+      const input2 = document.getElementById('password').value;
+      const username = database.ref(`users/${input1}/`);
+      const password = database.ref(`users/${input1}/${input2}`)
+      username.once('value')
+      .then(function(snapshot) {
+        if (snapshot.exists()) {
+          const profileData = snapshot.val();
+          // login
+        } else {
+          username.set(input1, (error) => {
+          if (error) {
+           console.error("error writing data:", error);
+           } else {
+            console.log("name saved");
+           }
+         });
+          password.set(input2, (error) => {
+          if (error) {
+           console.error("error writing data:", error);
+           } else {
+            console.log("password saved");
+           }
+         });
+        }
+      })
+      .catch(function(error) {
+        console.error("error checking user avaiability: ", error);
+      });
+      // Alert the input values
+      alert(`username: ${input1}\npassword: ${input2}`);
+    });
   </script>
 </body>
 </html>
