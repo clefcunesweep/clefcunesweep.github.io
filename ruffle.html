@@ -33,9 +33,6 @@
     var isEmbedded = false;
 
     swfobject.embedSWF = function(url, cont, width, height){
-        if (isEmbedded) {
-          return; // Skip embedding if already embedded
-        }
 
         var ruffle = window.RufflePlayer.newest();
         var player = Object.assign(document.getElementById(cont).appendChild(ruffle.createPlayer()), {
