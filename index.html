@@ -13,68 +13,38 @@
     <input type="text" id="password" name="password"><br>
     <button id="submitButton">login/signup</button>
   </div>
-  <!-- Load Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+  import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  <script>
-    // Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
-      authDomain: "sleeper-games-ce01e.firebaseapp.com",
-      databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
-      projectId: "sleeper-games-ce01e",
-      storageBucket: "sleeper-games-ce01e.firebasestorage.app",
-      messagingSenderId: "337164805904",
-      appId: "1:337164805904:web:a9ed1c181617415ec26795",
-      measurementId: "G-X0VQ79BHZ0"
-    };
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
+    authDomain: "sleeper-games-ce01e.firebaseapp.com",
+    databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
+    projectId: "sleeper-games-ce01e",
+    storageBucket: "sleeper-games-ce01e.firebasestorage.app",
+    messagingSenderId: "337164805904",
+    appId: "1:337164805904:web:a9ed1c181617415ec26795",
+    measurementId: "G-X0VQ79BHZ0"
+  };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 
-    // Get a reference to the Realtime Database
-    const database = firebase.database();
-    const rootRef = database.ref();
+  // Initialize Realtime Database and get a reference to the service
+  const database = getDatabase(app);
 
-    // Get the button element
-    const button = document.getElementById('submitButton');
-    // Add an event listener to the button's click event
-    button.addEventListener('click', function() {
-      // Get the values of the input fields
-      const input1 = document.getElementById('username').value;
-      const input2 = document.getElementById('password').value;
-      const username = database.ref(`users/${input1}/`);
-      const password = database.ref(`users/${input1}/${input2}`)
-      username.once('value')
-      .then(function(snapshot) {
-        if (snapshot.exists()) {
-          const profileData = snapshot.val();
-          // login
-        } else {
-          username.set(input1, (error) => {
-          if (error) {
-           console.error("error writing data:", error);
-           } else {
-            console.log("name saved");
-           }
-         });
-          password.set(input2, (error) => {
-          if (error) {
-           console.error("error writing data:", error);
-           } else {
-            console.log("password saved");
-           }
-         });
-        }
-      })
-      .catch(function(error) {
-        console.error("error checking user avaiability: ", error);
-      });
-      // Alert the input values
-      alert(`username: ${input1}\npassword: ${input2}`);
-    });
-  </script>
+  button.addEventListener('submitButton', function() {
+    alert("click!(not functional rn)");
+  });
+</script>
 </body>
 </html>
 
