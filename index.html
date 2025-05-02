@@ -47,10 +47,18 @@
 
   button.addEventListener("click", function() {
     var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
     var userhash = CryptoJS.MD5(username).toString();
+    var passhash = CryptoJS.MD5(password).toString();
+    if (username == "" || password == ""){
+      alert("you forgot to type in a value, dumbass.");
+      return;
+    }
     onValue(ref(database, `users/${userhash}`), (snapshot) => {
       alert(snapshot.val());
     });
+    
   });
 </script>
 </body>
