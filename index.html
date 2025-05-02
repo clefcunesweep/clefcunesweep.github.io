@@ -44,9 +44,8 @@
 
   button.addEventListener("click", function() {
     var username = document.getElementById("username").value;
-    alert("control");
     onValue(ref(database, `users/${username}`), (snapshot) => {
-      // alert("does it work");
+      alert(snapshot.val(););
     });
   });
 </script>
