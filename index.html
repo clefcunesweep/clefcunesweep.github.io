@@ -49,7 +49,7 @@
     var username = document.getElementById("username").value;
     var userhash = CryptoJS.MD5(username).toString();
     onValue(ref(database, `users/${userhash}`), (snapshot) => {
-      alert(snapshot.val());
+      alert(userhash);
     });
   });
 </script>
