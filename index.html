@@ -46,9 +46,9 @@
     var username = document.getElementById("input1").value;
     get(child(dbRef, `users/${username}`)).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        alert(snapshot.val());
       } else {
-        console.log("No data available");
+        alert("No data available");
       }
       }).catch((error) => {
         console.error(error);
