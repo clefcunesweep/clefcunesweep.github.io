@@ -61,12 +61,11 @@
           username: username,
           password: password,
         }).then(() => {
-          alert("success");
+          alert("account made");
         }).catch((error) => {
-          alert("you failed");
+          alert("you failed!");
         });
       }
-      alert(snapshot.val());
     });
     
   });
