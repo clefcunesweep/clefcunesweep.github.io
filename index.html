@@ -57,7 +57,14 @@
     }
     onValue(ref(database, `users/${userhash}`), (snapshot) => {
       if (snapshot.val() == null){
-        set(re)
+        set(ref(db, 'users/' + userId), {
+          username: username,
+          password: password,
+        }).then(() => {
+          alert("success");
+        }).catch((error) => {
+          alert("you failed");
+        });
       }
       alert(snapshot.val());
     });
