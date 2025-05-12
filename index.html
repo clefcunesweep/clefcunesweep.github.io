@@ -59,7 +59,7 @@
       if (snapshot.val() == null){
         set(ref(database, `users/${userhash}`), {
           username: username,
-          password: password,
+          password: passhash,
         }).then(() => {
           alert("account made");
         }).catch((error) => {
