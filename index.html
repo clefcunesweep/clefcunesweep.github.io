@@ -69,7 +69,6 @@
         });
       } else if(passhash == snapshot.val()) {
         localStorage.setItem("clefcune_usertoken", userhash);
-        alert(localStorage.getItem("clefcune_usertoken"));
         window.location.href = "https://clefcunesweep.github.io/main.html";
       } else {
         alert("do you even own this one?");
