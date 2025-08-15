@@ -55,7 +55,7 @@
       alert("you forgot to type in a value, dumbass.");
       return;
     }
-    onValue(ref(database, `users/${userhash}`), (snapshot) => {
+    onValue(ref(database, `users/${userhash}/password`), (snapshot) => {
       if (snapshot.val() == null){
         set(ref(database, `users/${userhash}`), {
           username: username,
