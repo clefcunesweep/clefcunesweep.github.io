@@ -6,7 +6,8 @@
   <!-- Your app's HTML content -->
   <div id="loginContainer">
     if you don't have an account, one will be auto-generated<br>
-    do be careful<br>
+    do be careful<br><br>
+    btw this dosen't use google accounts because that can be traced
     <label for="input1">username</label>
     <input type="text" id="username" name="username"><br>
     <label for="input2">password</label>
@@ -66,7 +67,9 @@
           alert("you failed!");
         });
       } else if(passhash == snapshot.val()) {
-        alert("fake-ass login");
+        localStorage.setItem("clefcune_usertoken", userhash);
+        alert(localStorage.getItem("clefcune_usertoken");)
+        window.location.replace("../main.html");
       } else {
         alert("do you even own this one?");
       }
