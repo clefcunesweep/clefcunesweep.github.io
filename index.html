@@ -55,7 +55,7 @@
       alert("you forgot to type in a value, dumbass.");
       return;
     }
-    onValue(ref(database, `users/${userhash}`), (snapshot) => {
+    onValue(ref(database, `users/${userhash}/password`), (snapshot) => {
       if (snapshot.val() == null){
         set(ref(database, `users/${userhash}`), {
           username: username,
@@ -65,8 +65,10 @@
         }).catch((error) => {
           alert("you failed!");
         });
+      } else if(passhash == snapshot.val()) {
+        alert("fake-ass login");
       } else {
-        alert("it exists");
+        alert("do you even own this one?");
       }
     });
     
