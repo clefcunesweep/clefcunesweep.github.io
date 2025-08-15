@@ -11,6 +11,9 @@ in sleeper games, you do epic stuff like not pay attention to classes and procra
 you want another game? just answer this dandy google form
 <br>
 <a href="https://docs.google.com/forms/d/e/1FAIpQLScUKsKoCSKAKjnH9WWeEXfxxDr8po064ypsxOLWH2E4v-HbAA/viewform?usp=sf_link">the form</a>
+<label id="username">
+welcome 
+</label>
 </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
@@ -33,7 +36,7 @@ you want another game? just answer this dandy google form
     projectId: "sleeper-games-ce01e",
     storageBucket: "sleeper-games-ce01e.firebasestorage.app",
     messagingSenderId: "337164805904",
-    appId: "1:337164805904:web:a9ed1c181617415ec26795",
+    appId: "1:337164805904:web:a9ed1c181617415ec26795", //leet
     measurementId: "G-X0VQ79BHZ0"
   };
 
@@ -43,6 +46,12 @@ you want another game? just answer this dandy google form
 
   // Initialize Realtime Database and get a reference to the service
   const database = getDatabase(app);
+
+  const userlabel =  document.getElementById('username');
+  function updateUserLabel(username){
+    userlabel.textContent = `Welcome ${username}`;
+  }
+  
   });
 </script>
 </html>
