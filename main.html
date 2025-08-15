@@ -47,11 +47,22 @@ welcome
   // Initialize Realtime Database and get a reference to the service
   const database = getDatabase(app);
 
+  // my shitty code starts here
   const userlabel =  document.getElementById('username');
+  const usertoken = localStorage.getItem("clefcune_usertoken");
+
+  // please work error handling
+  if (usertoken = null) {
+    window.location.href = "index.html";
+  }
+  
   function updateUserLabel(username){
     userlabel.textContent = `Welcome ${username}`;
   }
-  
+
+  updateUserLabel("placeholder");
+  onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
+    
   });
 </script>
 </html>
