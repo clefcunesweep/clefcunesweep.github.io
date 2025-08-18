@@ -1,5 +1,3 @@
-  
-  const button = document.getElementById("submitButton");
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
@@ -27,11 +25,12 @@
   // Initialize Realtime Database and get a reference to the service
   const database = getDatabase(app);
 
-  // my shitty code starts here(maybe seperate this into it's own script?
+  // my shitty code starts here
   const usertoken = localStorage.getItem("clefcune_usertoken");
 
   // please work error handling
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
+    alert(snapshot.val());
     if (snapshot.val() == null) {
       window.location.href = "index.html";
     }
