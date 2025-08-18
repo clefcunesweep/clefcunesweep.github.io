@@ -14,7 +14,7 @@ you want another game? just answer this dandy google form
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
-<script src="youdonthavenaccountsofuckyou.js"></script>
+<script type="module" src="youdonthavenaccountsofuckyou.js"></script>
   
 <script type="module">
   const button = document.getElementById("submitButton");
@@ -48,14 +48,9 @@ you want another game? just answer this dandy google form
   // my shitty code starts here(maybe seperate this into it's own script?)
   const userlabel =  document.getElementById('username');
   const usertoken = localStorage.getItem("clefcune_usertoken");
-
-  // please work error handling
-  if (usertoken == null) {
-    window.location.href = "index.html";
-  }
   
   function updateUserLabel(username){
-    userlabel.textContent = `welcome to whitespace games, ${username}`;
+    userlabel.textContent = `welcome to  games, ${username}`;
   }
 
   updateUserLabel("placeholder");
