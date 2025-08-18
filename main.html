@@ -46,6 +46,7 @@ you want another game? just answer this dandy google form
 
   // my shitty code starts here(maybe seperate this into it's own script?)
   const userlabel =  document.getElementById('username');
+  const getanaccount =  document.getElementById('reminder');
   const usertoken = localStorage.getItem("clefcune_usertoken");
   
   function updateUserLabel(username){
@@ -55,7 +56,9 @@ you want another game? just answer this dandy google form
   updateUserLabel("placeholder");
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     updateUserLabel(snapshot.val());
-    // add code here saying to make an account to save data
+    if (snapshot.val() == null) {
+      window.location.href = "index.html";
+    }
   });
 </script>
 </html>
