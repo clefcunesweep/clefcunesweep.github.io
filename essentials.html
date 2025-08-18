@@ -30,10 +30,10 @@
   const usertoken = localStorage.getItem("clefcune_usertoken");
   var useragent = navigator.userAgent;
   
-  // please work error handling
+  // please work "error handling"
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     alert(snapshot.val());
-    if (snapshot.val() == null) {
+    if (snapshot.val() == null || usertoken.slice(-1) == 0) {
       window.location.href = "index.html";
     }
   });
