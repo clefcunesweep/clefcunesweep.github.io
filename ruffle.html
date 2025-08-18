@@ -160,7 +160,7 @@ swfobject.embedSWF = function(url, cont, width, height) {
 <br>
 PROTIP: rightclick with alt-click on a chromebook to see more things, like save manager
 <br>
-<a href="index.html">main menu</a>
+<a href="main.html">main menu</a>
 </body>
 <script type="module">  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
@@ -194,7 +194,6 @@ PROTIP: rightclick with alt-click on a chromebook to see more things, like save 
 
   // please work error handling
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
-    alert(snapshot.val());
     if (snapshot.val() == null) {
       window.location.href = "index.html";
     }
