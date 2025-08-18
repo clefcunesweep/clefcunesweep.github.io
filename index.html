@@ -54,7 +54,7 @@
     
     var userhash = CryptoJS.MD5(username).toString();
     var passhash = CryptoJS.MD5(password).toString();
-    var usertoken = CryptoJs.MD5(userhash+passhash).toString();
+    var usertoken = CryptoJS.MD5(userhash+passhash).toString();
     var usertoken_t = usertoken+useragent.includes("CrOS");
     
     if (username == "" || password == ""){
