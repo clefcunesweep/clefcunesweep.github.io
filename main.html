@@ -14,7 +14,6 @@ you want another game? just answer this dandy google form
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
-<script type="module" src="youdonthavenaccountsofuckyou.js"></script>
   
 <script type="module">
   const button = document.getElementById("submitButton");
@@ -56,6 +55,7 @@ you want another game? just answer this dandy google form
   updateUserLabel("placeholder");
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     updateUserLabel(snapshot.val());
+    // add code here saying to make an account to save data
   });
 </script>
 </html>
