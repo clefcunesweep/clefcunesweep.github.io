@@ -53,13 +53,15 @@
     
     var userhash = CryptoJS.MD5(username).toString();
     var passhash = CryptoJS.MD5(password).toString();
+    var usertoken = CryptoJs.MD5(userhash+passhash).toSring();
+    
     if (username == "" || password == ""){
       alert("you forgot to type in a value, dumbass.");
       return;
     }
-    onValue(ref(database, `users/${userhash}/password`), (snapshot) => {
+    onValue(ref(database, `users/${usertoken}/password`), (snapshot) => {
       if (snapshot.val() == null){
-        set(ref(database, `users/${userhash}`), {
+        set(ref(database, `users/${usertoken}`), {
           username: username,
           password: passhash,
         }).then(() => {
@@ -68,7 +70,7 @@
           alert("you failed!");
         });
       } else if(passhash == snapshot.val()) {
-        localStorage.setItem("clefcune_usertoken", userhash);
+        localStorage.setItem("clefcune_usertoken", usertoken);
         window.location.href = "main.html";
       } else {
         alert("do you even own this one?");
