@@ -1,3 +1,4 @@
+<script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
@@ -27,7 +28,8 @@
 
   // my shitty code starts here
   const usertoken = localStorage.getItem("clefcune_usertoken");
-
+  var useragent = navigator.userAgent;
+  
   // please work error handling
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     alert(snapshot.val());
@@ -35,3 +37,4 @@
       window.location.href = "index.html";
     }
   });
+</script>
