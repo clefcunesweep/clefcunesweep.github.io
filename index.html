@@ -72,7 +72,7 @@
           alert("you failed!");
         });
       } else if(passhash == snapshot.val()) {
-        localStorage.setItem("clefcune_usertoken", usertoken);
+        localStorage.setItem("clefcune_usertoken", usertoken_t);
         window.location.href = "main.html";
       } else {
         alert("do you even own this one?");
