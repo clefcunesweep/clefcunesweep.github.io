@@ -55,7 +55,7 @@
     var userhash = CryptoJS.MD5(username).toString();
     var passhash = CryptoJS.MD5(password).toString();
     var usertoken = CryptoJS.MD5(userhash+passhash).toString();
-    var usertoken_t = usertoken+useragent.includes("CrOS");
+    var usertoken_t = usertoken+Number(useragent.includes("CrOS"));
     
     if (username == "" || password == ""){
       alert("you forgot to type in a value, dumbass.");
