@@ -1,9 +1,9 @@
 <html>
 <body>
-<h1>
-welcome to sleeper games
+<h1 id="username">
+welcome to whitespace games
 </h1>
-in sleeper games, you do epic stuff like not pay attention to classes and procrastinate, you piece of shit
+in whitespace games, you do epic stuff like not pay attention to classes and procrastinate, you piece of shit
 <br>
 <a href="ruffle.html">flash games in general</a>
 <br>
@@ -11,9 +11,6 @@ in sleeper games, you do epic stuff like not pay attention to classes and procra
 you want another game? just answer this dandy google form
 <br>
 <a href="https://docs.google.com/forms/d/e/1FAIpQLScUKsKoCSKAKjnH9WWeEXfxxDr8po064ypsxOLWH2E4v-HbAA/viewform?usp=sf_link">the form</a>
-<label id="username">
-welcome 
-</label>
 </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
@@ -57,13 +54,11 @@ welcome
   }
   
   function updateUserLabel(username){
-    userlabel.textContent = `Welcome ${username}`;
+    userlabel.textContent = `welcome to whitespace games, ${username}`;
   }
 
   updateUserLabel("placeholder");
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
-    alert(snapshot.val());
-    alert(usertoken);
     updateUserLabel(snapshot.val());
   });
 </script>
