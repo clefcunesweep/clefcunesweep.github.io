@@ -62,7 +62,7 @@ welcome
 
   updateUserLabel("placeholder");
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
-    
+    updateUserLabel(snapshot.val());
   });
 </script>
 </html>
