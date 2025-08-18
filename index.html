@@ -50,18 +50,20 @@
   button.addEventListener("click", function() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var useragent = navigator.userAgent;
     
     var userhash = CryptoJS.MD5(username).toString();
     var passhash = CryptoJS.MD5(password).toString();
     var usertoken = CryptoJs.MD5(userhash+passhash).toSring();
+    var usertoken_t = usertoken+useragent.includes("CrOS");
     
     if (username == "" || password == ""){
       alert("you forgot to type in a value, dumbass.");
       return;
     }
-    onValue(ref(database, `users/${usertoken}/password`), (snapshot) => {
+    onValue(ref(database, `users/${usertoken_t}/password`), (snapshot) => {
       if (snapshot.val() == null){
-        set(ref(database, `users/${usertoken}`), {
+        set(ref(database, `users/${usertoken_t}`), {
           username: username,
           password: passhash,
         }).then(() => {
