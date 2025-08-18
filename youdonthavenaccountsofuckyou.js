@@ -31,9 +31,6 @@
   const usertoken = localStorage.getItem("clefcune_usertoken");
 
   // please work error handling
-
-
-  updateUserLabel("placeholder");
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     if (snapshot.val() == null) {
       window.location.href = "index.html";
