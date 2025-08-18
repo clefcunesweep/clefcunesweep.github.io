@@ -50,7 +50,7 @@
   button.addEventListener("click", function() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    var useragent = navigator.userAgent;
+    let useragent = navigator.userAgent;
     
     var userhash = CryptoJS.MD5(username).toString();
     var passhash = CryptoJS.MD5(password).toString();
