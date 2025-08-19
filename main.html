@@ -53,9 +53,8 @@ you want another game? just answer this dandy google form
     userlabel.textContent = `welcome to  games, ${username}`;
   }
 
-  updateUserLabel("placeholder");
+  updateUserLabel(localStorage.getItem("clefcune_username"););
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
-    updateUserLabel(snapshot.val());
     if (snapshot.val() == null) {
       window.location.href = "index.html";
     }
