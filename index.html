@@ -13,6 +13,7 @@
     <input type="text" id="username" name="username"><br>
     <label for="input2">password</label>
     <input type="password" id="password" name="password"><br>
+    <input type="password" id="token" name="token(optinal)"><br>
     <button id="submitButton">login/signup</button>
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
@@ -50,6 +51,8 @@
   button.addEventListener("click", function() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var token = document.getElementById("token").value;
+      
     let useragent = navigator.userAgent;
     
     var userhash = CryptoJS.MD5(username).toString();
@@ -58,9 +61,20 @@
     var usertoken_t = usertoken+Number(useragent.includes("CrOS"));
     
     if (username == "" || password == ""){
-      alert("you forgot to type in a value, dumbass.");
+      alert("mhm, big nothingburger values");
       return;
     }
+    if (token != ""){
+      onValue(ref(database, `users/${token}/password`), (snapshot) => {
+      if(null != snapshot.val()) { // mhm, good priciple
+        localStorage.setItem("clefcune_usertoken", token);
+        window.location.href = "main.html";
+      } else {
+        alert("mhm, big nothingburger token");
+      }
+    });
+    }
+    
     onValue(ref(database, `users/${usertoken_t}/password`), (snapshot) => {
       if (snapshot.val() == null){
         set(ref(database, `users/${usertoken_t}`), {
