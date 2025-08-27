@@ -39,7 +39,7 @@
 
   var start = false;
   
-  // yoink!
+  // hippity hoppity your code is now my property
   setInterval(function(){
     function getLocalStorageKeysAsJSON() {
       const keys = {};
@@ -55,10 +55,6 @@
   function writeUserData(save_data) {
     set(ref(db, `users/${usertoken}/localstorageData`), save_data)
   }
-  if (!start) {
-    onValue(ref(database, `users/${usertoken}/localstorageData`), (snapshot) => {
-      // finish later
-    });
-  }
+  // ""borrow"" rewind.js
   
 </script>
