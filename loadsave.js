@@ -33,7 +33,6 @@
 onValue(ref(database, `users/${usertoken}/localstorageData`), (snapshot) => {
     const value = snapshot.val();
     const parseValue = JSON.parse(value);
-    const e = parseValue
     let totalString = ""
     console.log(parseValue)
     console.log("Parsed Data:", Object.keys(e));
