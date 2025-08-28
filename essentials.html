@@ -36,25 +36,5 @@
       window.location.href = "index.html";
     }
   });
-  
-  // hippity hoppity your code is now my property
-  var start = false;
-  
-  setInterval(function(){
-    function getLocalStorageKeysAsJSON() {
-      const keys = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        keys[key] = localStorage.getItem(key);
-      }
-      return JSON.stringify(keys);
-    }
-    const combinedJSON = getLocalStorageKeysAsJSON();
-    writeUserData(JSON.stringify(combinedJSON))
-  }, 1)
-  function writeUserData(save_data) {
-    set(ref(db, `users/${usertoken}/localstorageData`), save_data)
-  }
-  // ""borrow"" rewind.js
 </script>
 <script src="loadsave.js" type="module"></script>
