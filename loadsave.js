@@ -35,7 +35,7 @@ onValue(ref(database, `users/${usertoken}/localstorageData`), (snapshot) => {
     const parseValue = JSON.parse(value);
     let totalString = ""
     console.log(parseValue)
-    console.log("Parsed Data:", Object.keys(e));
+    console.log("Parsed Data:", Object.keys(parseValue));
     for (var i = 0; i < Object.keys(e).length; i++){
         const key = Object.keys(e)[i]
         console.log(key)
