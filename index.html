@@ -41,7 +41,12 @@
     appId: "1:337164805904:web:a9ed1c181617415ec26795",
     measurementId: "G-X0VQ79BHZ0"
   };
-
+  const tokenForCheck = localStorage.getItem("clefcune_usertoken");
+  if(tokenForCheck != null) {
+    localStorage.setItem("clefcune_usertoken", token);
+    window.location.href = "main.html";
+  }
+  
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
