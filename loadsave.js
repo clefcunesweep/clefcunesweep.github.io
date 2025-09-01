@@ -32,29 +32,37 @@
 
 onValue(ref(database, `users/${usertoken}/localstorageData`), (snapshot) => {
     const value = snapshot.val();
-    const parseValue = JSON.parse(value);
-    let totalString = ""
-    console.log(parseValue)
-    console.log("Parsed Data:", Object.keys(parseValue));
-for (var i = 0; i < Object.keys(parseValue).length; i++){
-    const key = Object.keys(parseValue)[i]
-    console.log(key)
-    totalString += parseValue[key]
-    console.log(totalString)
-}
+    
+    // Check if value is null before parsing
+    if (value !== null) {
+        const parseValue = JSON.parse(value);
+        let totalString = "";
+        console.log(parseValue);
+        console.log("Parsed Data:", Object.keys(parseValue));
+        
+        for (var i = 0; i < Object.keys(parseValue).length; i++) {
+            const key = Object.keys(parseValue)[i];
+            console.log(key);
+            totalString += parseValue[key];
+            console.log(totalString);
+        }
 
-    totalString = JSON.parse(totalString)
-    console.log(totalString)
-    console.log(Object.keys(totalString))
-    for (var i = 0; i < Object.keys(totalString).length; i++){
-        const key = Object.keys(totalString)[i]
-        console.log(key)
-        localStorage.setItem(key, totalString[key])
+        totalString = JSON.parse(totalString);
+        console.log(totalString);
+        console.log(Object.keys(totalString));
+        
+        for (var i = 0; i < Object.keys(totalString).length; i++) {
+            const key = Object.keys(totalString)[i];
+            console.log(key);
+            localStorage.setItem(key, totalString[key]);
+        }
+    } else {
+        console.warn("mhm, big nothingburger data");
     }
-    start = true
-  }, {
+}, {
     onlyOnce: true
-  });
+});
+
 
 setInterval(function(){
     if (start == true){
