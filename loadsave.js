@@ -1,10 +1,8 @@
-// hippity hoppity your code is now my property
-// Import the functions you need from the SDKs you need
+// hippity hoppity your code is now  my property
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
     authDomain: "sleeper-games-ce01e.firebaseapp.com",
@@ -16,52 +14,38 @@ const firebaseConfig = {
     measurementId: "G-X0VQ79BHZ0"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
+// inhumane code surgery
 const usertoken = localStorage.getItem("clefcune_usertoken");
-let start = false;
 
-// change up the homework slightly
-onValue(ref(database, `users/${usertoken}/localstorageData`), (snapshot) => {
-    const value = snapshot.val();
+function loadLocalStorageData() {
+    const userRef = ref(database, `users/${usertoken}/localstorageData`);
+    onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data !== null) {
+            const localStorageData = JSON.parse(data);
+            Object.keys(localStorageData).forEach((key) => {
+                localStorage.setItem(key, localStorageData[key]);
+            });
+        }
+    }, { onlyOnce: true });
+}
 
-    if (value) {
-        const parsedValue = JSON.parse(value);
-        console.log("Parsed Data:", Object.keys(parsedValue));
-
-        const totalArray = Object.keys(parsedValue).map(key => parsedValue[key]);
-        const finalData = Object.assign({}, ...totalArray);
-
-        console.log(finalData);
-        console.log(Object.keys(finalData));
-
-        Object.keys(finalData).forEach(key => {
-            console.log(key);
-            localStorage.setItem(key, finalData[key]);
-        });
-      start = true;
-    } else {
-        console.warn("mhm, big nothingburger value");
-    }
-}, { onlyOnce: true });
-
-setInterval(() => {
-    if (start) {
-        const combinedJSON = JSON.stringify(getLocalStorageKeysAsJSON());
-        writeUserData(combinedJSON);
-    }
-}, 500);
-
-function getLocalStorageKeysAsJSON() {
-    return Array.from({ length: localStorage.length }, (_, i) => {
+function saveLocalStorageData() {
+    const localStorageData = {};
+    for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        return { [key]: localStorage.getItem(key) };
-    }).reduce((acc, curr) => Object.assign(acc, curr), {});
+        localStorageData[key] = localStorage.getItem(key);
+    }
+    const userRef = ref(database, `users/${usertoken}/localstorageData`);
+    set(userRef, JSON.stringify(localStorageData));
 }
 
-function writeUserData(save_data) {
-    set(ref(database, `users/${usertoken}/localstorageData`), save_data);
-}
+// Load local storage data on page load
+loadLocalStorageData();
+
+// Save local storage data every 0.5 seconds
+setInterval(saveLocalStorageData, 500);
