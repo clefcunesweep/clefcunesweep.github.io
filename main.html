@@ -8,6 +8,9 @@ in  games, you do epic stuff like not pay attention to classes and procrastinate
 <a href="ruffle.html">flash games in general</a>
 <br>
 <br>
+<button id="logout">log out</button>
+<br>
+<br>
 you want another game? just answer this dandy google form
 <br>
 <a href="https://docs.google.com/forms/d/e/1FAIpQLScUKsKoCSKAKjnH9WWeEXfxxDr8po064ypsxOLWH2E4v-HbAA/viewform?usp=sf_link">the form</a>
@@ -47,6 +50,7 @@ you want another game? just answer this dandy google form
 
   // my shitty code starts here(maybe seperate this into it's own script?)
   const userlabel =  document.getElementById('username');
+  const logout =  document.getElementById('logout');
   const getanaccount =  document.getElementById('reminder');
   const usertoken = localStorage.getItem("clefcune_usertoken");
   
@@ -54,6 +58,11 @@ you want another game? just answer this dandy google form
     userlabel.textContent = `welcome to  games, ${username}`;
   }
 
+  document.getElementById('logout').addEventListener("click", function() {
+   localStorage.removeItem("clefcune_usertoken");
+  localStorage.removeItem("clefcune_username");
+  }​);​
+  
   updateUserLabel(localStorage.getItem("clefcune_username"););
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     if (snapshot.val() == null) {
