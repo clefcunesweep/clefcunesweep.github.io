@@ -61,8 +61,9 @@ you want another game? just answer this dandy google form
   }
 
   document.getElementById('logout').addEventListener("click", function() {
-   localStorage.removeItem("clefcune_usertoken");
-  localStorage.removeItem("clefcune_username");
+    localStorage.removeItem("clefcune_usertoken");
+    localStorage.removeItem("clefcune_username");
+    window.location.href = "index.html";
   }​);​
   
   updateUserLabel(localStorage.getItem("clefcune_username"););
