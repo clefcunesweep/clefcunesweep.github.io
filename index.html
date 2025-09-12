@@ -62,6 +62,9 @@
     
     var userhash = CryptoJS.MD5(username).toString();
     var passhash = CryptoJS.MD5(password).toString();
+    var usertoken = CryptoJS.MD5(userhash+passhash).toString();
+    var usertoken_t = usertoken+Number(useragent.includes("CrOS"));
+
     
     if (username == "" || password == ""){
       alert("mhm, big nothingburger values");
@@ -80,8 +83,7 @@
     
     onValue(ref(database, `users/${usertoken_t}/username`), (snapshot) => {
       if (snapshot.val() == null){
-        var usertoken = CryptoJS.MD5(userhash+passhash).toString();
-        var usertoken_t = usertoken+Number(useragent.includes("CrOS"));
+        
         set(ref(database, `users/${usertoken_t}`), {
           username: username,
           password: passhash,
