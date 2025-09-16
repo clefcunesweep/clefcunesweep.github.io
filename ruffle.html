@@ -137,26 +137,16 @@ swfobject.embedSWF = function(url, cont, width, height) {
     }
 
     function uploadSWF() {
-      const fileInput = document.getElementById('file-upload');
-      const file = fileInput.files[0];
-      if (file && file.name.endsWith('.swf')) {
-        const formData = new FormData();
-        formData.append('file', file);
-
-        fetch('YOUR_UPLOAD_ENDPOINT', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Upload successful:', data);
-          // Optionally, refresh the file list or handle the response
-        })
-        .catch(error => console.error('Upload error:', error));
-      } else {
-        alert('Please select a valid SWF file.');
-      }
-    }
+  const fileInput = document.getElementById('file-upload');
+  const file = fileInput.files[0];
+  if (file && file.name.endsWith('.swf')) {
+    // Create a blob URL for the SWF file
+    const fileURL = URL.createObjectURL(file);
+    swfobject.embedSWF(fileURL, 'ruffle', 800, 600);
+  } else {
+    alert('that aint a fuckin swf');
+  }
+}
   </script>
 <br>
 PROTIP: rightclick with alt-click on a chromebook to see more things, like save manager
