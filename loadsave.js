@@ -42,6 +42,7 @@ function saveLocalStorageData() {
         localStorageData[key] = localStorage.getItem(key);
     }
     const userRef = ref(database, `users/${usertoken}/localstorageData`);
+    console.log(localStorageData);
     set(userRef, JSON.stringify(localStorageData));
 }
 
