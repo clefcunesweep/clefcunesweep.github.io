@@ -25,6 +25,7 @@ function loadLocalStorageData() {
     const userRef = ref(database, `users/${usertoken}/localstorageData`);
     onValue(userRef, (snapshot) => {
         const data = snapshot.val();
+        console.log(data);
         if (data !== null) {
             const localStorageData = JSON.parse(data);
             Object.keys(localStorageData).forEach((key) => {
