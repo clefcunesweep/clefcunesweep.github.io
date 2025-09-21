@@ -1,2 +1,1 @@
-lolfactor here's flipping out about me stealing a bit of code
-idfk
+credit to lolfactor, i stole a bit of his code(look in issues)
