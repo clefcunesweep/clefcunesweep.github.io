@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+#buttons {
+  text-align: center;
+  font-size: 18px;
+}
+#refreshButton {
+  text-align: center;
+  font-size: 16px;
+}
+</style>
+</head>
 <body>
 NOTE: This is unfinished.<br><br>
-<button onclick="undo()" class="buttons" >←</button><button onclick="redo()" class="buttons" >→</button><button onclick="refresh()" class="buttons">⟳</button><input type="text" id="url" placeholder="https://exmaple.com/"><br>
+<button onclick="undo()" id="buttons" >←</button>
+<button onclick="redo()" id="buttons" >→</button>
+<button onclick="refresh()" id="refreshButton">⟳</button>
+<input type="text" id="url" placeholder="https://exmaple.com/"><br>
 <iframe id="iframe" width="500" height="300" src="about:blank"></iframe><br><br>
 <a href="main.html">main menu</a>
 </body>
