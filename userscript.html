@@ -1,42 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-#undo {
-  text-align: center;
-  font-size: 90%;
-  position: relative;
-  top: 15%;
-}
-#redo {
-  text-align: center;
-  font-size: 90%;
-  position: relative;
-  top: 15%;
-  right: 5px;
-}
-#refreshButton {
-  text-align: center;
-  font-size: 70%;
-  position: relative;
-  top: 7.5%;
-  right: 10px;
-}
-#url {
-  font-size: 90%;
-  position: relative;
-  top: 2px;
-  right: 5px;
-}
-</style>
+
 </head>
 <body>
 NOTE: This is unfinished.<br><br>
-<button onclick="undo()" id="undo" >←</button>
-<button onclick="redo()" id="redo" >→</button>
-<button onclick="refresh()" id="refreshButton">⟳</button>
-<input type="text" id="url" placeholder="https://exmaple.com/"><br>
-<iframe id="iframe" width="500" height="300" src="about:blank"></iframe><br><br>
+<span style="display: inline;">
+  <button onclick="undo()" id="undo" >←</button>
+  <button onclick="redo()" id="redo" >→</button>
+  <button onclick="refresh()" id="refreshButton">⟳</button>
+  <input type="text" id="url" placeholder="https://exmaple.com/"><br>
+  <iframe id="iframe" width="500" height="300" src="about:blank"></iframe>
+</span>
+<br><br>
 <a href="main.html">main menu</a>
 </body>
 </html>
