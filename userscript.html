@@ -51,7 +51,9 @@
             // Prevent the default action (e.g., new line in a textarea)
             event.preventDefault();
             // Submit the form
-            iframe.body.appendChild(`window.location.assign("${urlText.value}");`);
+            const script = iframe.contentWindow.document.createElement('script');
+            script.textContent = `window.location.assign("${urlText.value}");`;
+            iframe.contentWindow.document.body.appendChild(script);
          }
          });
       </script>
