@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-#undo {
-  text-align: center;
-  font-size: 90%;
-  position: relative;
-  top: 2px;
-}
-#redo {
-  text-align: center;
-  font-size: 90%;
-  position: relative;
-  top: 2px;
-  right: 5px;
-}
-#refreshButton {
-  text-align: center;
-  font-size: 70%;
-  position: relative;
-  top: 1px;
-  right: 10px;
-}
-#url {
-  font-size: 90%;
-  position: relative;
-  top: 2px;
-  right: 15px;
-}
-</style>
-</head>
-<body>
-NOTE: This is unfinished.<br><br>
-<span style="display: inline;">
-  <button onclick="undo()" id="undo" >←</button>
-  <button onclick="redo()" id="redo" >→</button>
-  <button onclick="refresh()" id="refreshButton">⟳</button>
-  <input type="text" id="url" placeholder="https://exmaple.com/"><br>
-  <iframe id="iframe" width="500" height="300" src="about:blank"></iframe>
-</span>
-<br><br>
-<a href="main.html">main menu</a>
-</body>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <style>
+         #undo {
+         text-align: center;
+         font-size: 90%;
+         position: relative;
+         top: 2px;
+         }
+         #redo {
+         text-align: center;
+         font-size: 90%;
+         position: relative;
+         top: 2px;
+         right: 5px;
+         }
+         #refreshButton {
+         text-align: center;
+         font-size: 70%;
+         position: relative;
+         top: 1px;
+         right: 10px;
+         }
+         #url {
+         font-size: 90%;
+         position: relative;
+         top: 2px;
+         right: 15px;
+         }
+      </style>
+   </head>
+   <body>
+      NOTE: This is unfinished.<br><br>
+      <button onclick="undo()" id="undo" >←</button>
+      <button onclick="redo()" id="redo" >→</button>
+      <button onclick="refresh()" id="refreshButton">⟳</button>
+      <input type="text" id="url" placeholder="https://exmaple.com/"><br>
+      <iframe id="iframe" width="500" height="300" src="about:blank"></iframe>
+      <br><br>
+      <a href="main.html">main menu</a>
+      <script>
+         // Get the textbox element
+         const urlText = document.getElementById('url');
+         // Add an event listener for the 'keydown' event
+         urlText.addEventListener('keydown', function(event) {
+         // Check if the ENTER key (key code 13) is pressed
+         if (event.key === 'Enter') {
+         // Prevent the default action (e.g., new line in a textarea)
+         event.preventDefault();
+         // Submit the form
+         document.getElementById('myForm').submit();
+         }
+         });
+      </script>
+   </body>
 </html>
