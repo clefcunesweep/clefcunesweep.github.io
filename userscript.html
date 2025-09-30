@@ -51,7 +51,7 @@
             // Prevent the default action (e.g., new line in a textarea)
             event.preventDefault();
             // Submit the form
-            iframe.contentWindow.eval(`window.location.href = '${urlText.value}'`)
+            iframe.contentWindow.eval(`window.location.assign("${urlText.value}");`);
          }
          });
       </script>
