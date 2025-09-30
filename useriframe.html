@@ -51,6 +51,15 @@
                iframe.src = urlText.value;
             }
          });
+         function undo(){
+            history.go(-1);
+         }
+         function redo(){
+            history.go(-1);
+         }
+         function refresh(){
+            history.go(0);
+         }
       </script>
    </body>
 </html>
