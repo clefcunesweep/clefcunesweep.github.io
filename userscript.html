@@ -54,6 +54,16 @@
             iframe.src = urlText.value;
          }
          });
+         function undo() {
+            const script = document.createElement('script');
+            script.textContent = 'window.history.back();';
+            iframe.contentWindow.document.body.appendChild(script);
+         }
+         function redo() {
+            const script = document.createElement('script');
+            script.textContent = 'window.history.forward();';
+            iframe.contentWindow.document.body.appendChild(script);
+         }
       </script>
    </body>
 </html>
