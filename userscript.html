@@ -2,20 +2,30 @@
 <html>
 <head>
 <style>
-#buttons {
+#undo {
   text-align: center;
   font-size: 80%;
+  position: relative;
+  top: 2px;
+}
+#redo {
+  text-align: center;
+  font-size: 80%;
+  position: relative;
+  top: 2px;
 }
 #refreshButton {
   text-align: center;
   font-size: 70%;
+  position: relative;
+  top: 1px;
 }
 </style>
 </head>
 <body>
 NOTE: This is unfinished.<br><br>
-<button onclick="undo()" id="buttons" >←</button>
-<button onclick="redo()" id="buttons" >→</button>
+<button onclick="undo()" id="undo" >←</button>
+<button onclick="redo()" id="redo" >→</button>
 <button onclick="refresh()" id="refreshButton">⟳</button>
 <input type="text" id="url" placeholder="https://exmaple.com/"><br>
 <iframe id="iframe" width="500" height="300" src="about:blank"></iframe><br><br>
