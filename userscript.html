@@ -43,14 +43,15 @@
       <script>
          // Get the textbox element
          const urlText = document.getElementById('url');
+         const iframe = document.getElementById('iframe');
          // Add an event listener for the 'keydown' event
          urlText.addEventListener('keydown', function(event) {
          // Check if the ENTER key (key code 13) is pressed
          if (event.key === 'Enter') {
-         // Prevent the default action (e.g., new line in a textarea)
-         event.preventDefault();
-         // Submit the form
-         document.getElementById('myForm').submit();
+            // Prevent the default action (e.g., new line in a textarea)
+            event.preventDefault();
+            // Submit the form
+            iframe.src = urlText.value;
          }
          });
       </script>
