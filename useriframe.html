@@ -49,6 +49,7 @@
       </div>
       <iframe id="iframe" src="about:blank"></iframe>
       <script>
+         const state = history.state;
          // Get the textbox element
          const urlText = document.getElementById('url');
          const iframe = document.getElementById('iframe');
@@ -63,10 +64,12 @@
             }
          });
          function undo(){
-            history.go(-1);
+            if (history.state - 1 !< state) {
+               history.go(-1);
+            }
          }
          function redo(){
-            history.go(-1);
+            history.go(1);
          }
          function refresh(){
             history.go(0);
