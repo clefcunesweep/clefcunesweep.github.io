@@ -13,19 +13,12 @@
             height: 5vh; /* Use viewport height for responsiveness */
             align-items: left; /* Center items vertically */
          }
-         #refreshButton, #console {
+         #console, #mainmenu {
             text-align: center;
             width: 2.5vw;
             height: 100%;
             font-size: 1.25em; /* Increase font size for better visibility */
             font-size: 1.125em; /* Increase font size for better visibility */
-         }
-         #undo, #redo {
-            text-align: center;
-            width: 2.5vw;
-            height: 100%;
-            font-size: 2em; /* Increase font size for better visibility */
-            font-size: 1.8em; /* Increase font size for better visibility */
          }
          #url {
             flex: 10; /* Allow the input box to take more space */
@@ -41,8 +34,7 @@
    </head>
    <body>
       <div id="topbar">
-        <button onclick="undo()" id="undo">←</button>
-        <button onclick="redo()" id="redo">→</button>
+        <button onclick="mainMenu()" id="mainmenu">✕</button>
         <button onclick="refresh()" id="refreshButton">⟳</button>
         <input type="text" id="url" placeholder="https://exmaple.com/" autocorrect="off">
         <button onclick="console()" id="console">>_</button>
@@ -63,14 +55,10 @@
                iframe.src = urlText.value;
             }
          });
-         function undo(){
-            if (state >= history.length - 1) {
-               history.go(-1);
-            }
+         function mainMenu(){
+            location.href = main.html;
          }
-         function redo(){
-            history.go(1);
-         }
+         
          function refresh(){
             history.go(0);
          }
