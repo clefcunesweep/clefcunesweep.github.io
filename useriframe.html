@@ -13,13 +13,13 @@
             height: 5vh; /* Use viewport height for responsiveness */
             align-items: left; /* Center items vertically */
          }
-         #undo, #redo, #refreshButton {
-            flex: 5; /* Allow buttons to grow and shrink */
+         #undo, #redo, #refreshButton, #console {
+            flex: 1; /* Allow buttons to grow and shrink */
             height: 100%;
             font-size: 1.5em; /* Increase font size for better visibility */
          }
          #url {
-            flex: 95; /* Allow the input box to take more space */
+            flex: 10; /* Allow the input box to take more space */
             height: 100%;
             font-size: 1.5em; /* Increase font size for better visibility */
          }
@@ -34,7 +34,8 @@
         <button onclick="undo()" id="undo">←</button>
         <button onclick="redo()" id="redo">→</button>
         <button onclick="refresh()" id="refreshButton">⟳</button>
-        <input type="text" id="url" placeholder="https://exmaple.com/"> <!-- Corrected URL -->
+        <input type="text" id="url" placeholder="https://exmaple.com/">
+        <button onclick="console()" id="console">>_</button>
       </div>
       <iframe id="iframe" src="about:blank"></iframe>
       <script>
