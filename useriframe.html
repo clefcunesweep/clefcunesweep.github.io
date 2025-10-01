@@ -65,7 +65,6 @@
             }
          });
          function undo(){
-            if (state >= history.state - 1) {
             if (state >= history.length - 1) {
                history.go(-1);
             }
