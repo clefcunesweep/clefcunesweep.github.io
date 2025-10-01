@@ -1,74 +1,96 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-      <style>
-         body {
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <style>
+        body {
             margin: 0;
             padding: 0;
-         }
-         #topbar {
-            display: flex; /* Use flexbox for layout */
+            font-size: 16px; /* Set a base font size */
+        }
+
+        #topbar {
+            display: flex;
             width: 100%;
-            height: 5vh; /* Use viewport height for responsiveness */
-            align-items: left; /* Center items vertically */
-         }
-         #refreshButton, #console {
+            height: 5vh;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 0 10px; /* Add some padding to the topbar */
+        }
+
+        #refreshButton, #console, #undo, #redo {
             text-align: center;
-            width: 2.5vw;
+            width: 40px;
             height: 100%;
-            font-size: 1.125em; /* Increase font size for better visibility */
-         }
-         #undo, #redo {
-            text-align: center;
-            width: 2.5vw;
-            height: 100%;
-            font-size: 1.8em; /* Increase font size for better visibility */
-         }
-         #url {
-            flex: 10; /* Allow the input box to take more space */
-            height: 90%;
-            font-size: 1.5em; /* Increase font size for better visibility */
-         }
-         #iframe {
-            width: 100%; /* Make iframe responsive */
-            height: 95vh; /* Use viewport height for responsiveness */
+            font-size: 1.125rem; /* Use relative font size */
+            padding: 0 10px; /* Add some padding to the buttons */
+        }
+
+        #url {
+            flex: 1;
+            height: 80%;
+            font-size: 1.125rem; /* Use relative font size */
+            padding: 0 10px; /* Add some padding to the input */
+        }
+
+        #iframe {
+            width: 100%;
+            height: 95vh;
             border: none;
-         }
-      </style>
-   </head>
-   <body>
-      <div id="topbar">
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            #topbar {
+                height: 50px; /* Adjust the height for smaller screens */
+            }
+
+            #refreshButton, #console, #undo, #redo {
+                font-size: 1rem; /* Adjust the font size for smaller screens */
+            }
+
+            #url {
+                font-size: 1rem; /* Adjust the font size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="topbar">
         <button onclick="undo()" id="undo">←</button>
         <button onclick="redo()" id="redo">→</button>
         <button onclick="refresh()" id="refreshButton">⟳</button>
-        <input type="text" id="url" placeholder="https://exmaple.com/" autocorrect="off">
+        <input type="text" id="url" placeholder="https://example.com/" autocorrect="off">
         <button onclick="console()" id="console">>_</button>
-      </div>
-      <iframe id="iframe" src="about:blank"></iframe>
-      <script>
-         // Get the textbox element
-         const urlText = document.getElementById('url');
-         const iframe = document.getElementById('iframe');
-         // Add an event listener for the 'keydown' event
-         urlText.addEventListener('keydown', function(event) {
+    </div>
+    <iframe id="iframe" src="about:blank"></iframe>
+    <script>
+        // Get the textbox element
+        const urlText = document.getElementById('url');
+        const iframe = document.getElementById('iframe');
+
+        // Add an event listener for the 'keydown' event
+        urlText.addEventListener('keydown', function(event) {
             // Check if the ENTER key (key code 13) is pressed
             if (event.key === 'Enter') {
-               // Prevent the default action (e.g., new line in a textarea)
-               event.preventDefault();
-               // Submit the form
-               iframe.src = urlText.value;
+                // Prevent the default action (e.g.,e.g., new line in a textarea)
+                event.preventDefault();
+                // Submit the form
+                iframe.src = urlText.value;
             }
-         });
-         function undo(){
+        });
+
+        function undo() {
             history.go(-1);
-         }
-         function redo(){
+        }
+
+        function redo() {
             history.go(-1);
-         }
-         function refresh(){
+        }
+
+        function refresh() {
             history.go(0);
-         }
-      </script>
-   </body>
+        }
+    </script>
+</body>
 </html>
