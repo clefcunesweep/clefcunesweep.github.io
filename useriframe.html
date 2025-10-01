@@ -49,46 +49,33 @@
       </div>
       <iframe id="iframe" src="about:blank"></iframe>
       <script>
-let historyStack = []; // Custom history stack
-let currentIndex = -1; // Track the current index in the history stack
-
-function loadUrl(url) {
-    iframe.src = url;
-    // Update the custom history stack
-    if (currentIndex < historyStack.length - 1) {
-        historyStack = historyStack.slice(0, currentIndex + 1);
-    }
-    historyStack.push(url);
-    currentIndex++;
-}
-
-urlText.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        loadUrl(urlText.value);
-    }
-});
-
-function undo() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        iframe.src = historyStack[currentIndex];
-    }
-}
-
-function redo() {
-    if (currentIndex < historyStack.length - 1) {
-        currentIndex++;
-        iframe.src = historyStack[currentIndex];
-    }
-}
-
-function refresh() {
-    if (currentIndex >= 0) {
-        iframe.src = historyStack[currentIndex];
-    }
-}
-
+         const state = history.state;
+         const state = history.length;
+         // Get the textbox element
+         const urlText = document.getElementById('url');
+         const iframe = document.getElementById('iframe');
+         // Add an event listener for the 'keydown' event
+         urlText.addEventListener('keydown', function(event) {
+            // Check if the ENTER key (key code 13) is pressed
+            if (event.key === 'Enter') {
+               // Prevent the default action (e.g., new line in a textarea)
+               event.preventDefault();
+               // Submit the form
+               iframe.src = urlText.value;
+            }
+         });
+         function undo(){
+            if (state >= history.state - 1) {
+            if (state >= history.length - 1) {
+               history.go(-1);
+            }
+         }
+         function redo(){
+            history.go(1);
+         }
+         function refresh(){
+            history.go(0);
+         }
       </script>
    </body>
 </html>
