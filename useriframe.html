@@ -1,78 +1,59 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <style>
-        #topbar {
-            display: flex;
-            width: 100%;
-            height: 5vh;
-            align-items: left;
-        }
-
-        #undo, #redo {
-            text-align: center;
-            width: 40px;
-            height: 100%;
-            font-size: 1.5rem; /* Use relative font size */
-        }
-
-        #refreshButton, #console{
-            text-align: center;
-            width: 40px;
-            height: 100%;
-            font-size: 1.125rem; /* Use relative font size */
-        }
-
-        #url {
-            flex: 1;
-            height: 90%;
-            font-size: 1.5; /* Use relative font size */
-        }
-
-        #iframe {
-            width: 100%;
-            height: 95vh;
-            border: none;
-        }
-    </style>
-</head>
-<body>
-    <div id="topbar">
-        <button onclick="undo()" id="undo">←</button>
-        <button onclick="redo()" id="redo">→</button>
-        <button onclick="refresh()" id="refreshButton">⟳</button>
-        <input type="text" id="url" placeholder="https://example.com/" autocorrect="off">
-        <button onclick="console()" id="console">>_</button>
-    </div>
-    <iframe id="iframe" src="about:blank"></iframe>
-    <script>
-        // Get the textbox element
-        const urlText = document.getElementById('url');
-        const iframe = document.getElementById('iframe');
-
-        // Add an event listener for the 'keydown' event
-        urlText.addEventListener('keydown', function(event) {
-            // Check if the ENTER key (key code 13) is pressed
-            if (event.key === 'Enter') {
-                // Prevent the default action (e.g.,e.g., new line in a textarea)
-                event.preventDefault();
-                // Submit the form
-                iframe.src = urlText.value;
-            }
-        });
-
-        function undo() {
-            history.go(-1);
-        }
-
-        function redo() {
-            history.go(-1);
-        }
-
-        function refresh() {
-            history.go(0);
-        }
-    </script>
-</body>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <style>
+         #undo {
+         text-align: center;
+         font-size: 90%;
+         position: relative;
+         top: 2px;
+         }
+         #redo {
+         text-align: center;
+         font-size: 90%;
+         position: relative;
+         top: 2px;
+         right: 5px;
+         }
+         #refreshButton {
+         text-align: center;
+         font-size: 70%;
+         position: relative;
+         top: 1px;
+         right: 10px;
+         }
+         #url {
+         font-size: 90%;
+         position: relative;
+         top: 2px;
+         right: 15px;
+         }
+      </style>
+   </head>
+   <body>
+      NOTE: This is unfinished.<br><br>
+      <button onclick="undo()" id="undo" >←</button>
+      <button onclick="redo()" id="redo" >→</button>
+      <button onclick="refresh()" id="refreshButton">⟳</button>
+      <input type="text" id="url" placeholder="https://exmaple.com/"><br>
+      <iframe id="iframe" width="500" height="300" src="about:blank"></iframe>
+      <iframe id="iframe" width="500" height="300" src="https://clefcunesweep.github.io/useriframe.html"></iframe>
+      <br><br>
+      <a href="main.html">main menu</a>
+      <script> // BRILLIANT IDEA: iframe in an iframe :D
+         // Get the textbox element
+         const urlText = document.getElementById('url');
+         const iframe = document.getElementById('iframe');
+         // Add an event listener for the 'keydown' event
+         urlText.addEventListener('keydown', function(event) {
+         // Check if the ENTER key (key code 13) is pressed
+         if (event.key === 'Enter') {
+            // Prevent the default action (e.g., new line in a textarea)
+            event.preventDefault();
+            // Submit the form
+            iframe.src = urlText.value;
+         }
+         });
+      </script>
+   </body>
 </html>
