@@ -67,6 +67,47 @@
          setInterval(() => {
     localStorage.setItem("userScriptURL", iframe.src);
 }, 125);
-      </script>
+
+// ze copy and ze passte
+</script>
+      <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+  import { getDatabase, ref, set, onValue, child, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
+    authDomain: "sleeper-games-ce01e.firebaseapp.com",
+    databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
+    projectId: "sleeper-games-ce01e",
+    storageBucket: "sleeper-games-ce01e.firebasestorage.app",
+    messagingSenderId: "337164805904",
+    appId: "1:337164805904:web:a9ed1c181617415ec26795", //leet
+    measurementId: "G-X0VQ79BHZ0"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  // Initialize Realtime Database and get a reference to the service
+  const database = getDatabase(app);
+
+  // my shitty code starts here
+  const usertoken = localStorage.getItem("clefcune_usertoken");
+  var useragent = navigator.userAgent;
+  
+  // please work "error handling"
+  onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
+    if (snapshot.val() == null || usertoken.slice(-1) == 0) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
    </body>
 </html>
