@@ -186,7 +186,7 @@ PROTIP: rightclick with alt-click on a chromebook to see more things, like save 
   // please work error handling
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     if (snapshot.val() == null) {
-      window.location.href = "index.html";
+      window.location.href = "login.html";
     }
   });
 </script>
