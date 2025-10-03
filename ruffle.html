@@ -19,123 +19,7 @@
   <br>
   <label for="swf-select">pick flash game</label>
   <select id="swf-select">
-    <option value="">pick a file</option><!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-  
-  <!-- Your app's HTML content -->
-  <div id="loginContainer">
-    if you don't have an account, one will be auto-generated<br>
-    do be careful<br>
-    btw this dosen't use google accounts because that can be traced<br>
-    <label for="input1">username</label>
-    <input type="text" id="username" name="username"><br>
-    <label for="input2">password</label>
-    <input type="password" id="password" name="password"><br>
-    <label for="input3">(optional) token</label>
-    <input type="password" id="token" name="token(optinal)"><br>
-    <button id="submitButton">login/signup</button>
-  </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
-  
-<script type="module">
-  const button = document.getElementById("submitButton");
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
-  import { getDatabase, ref, set, onValue, child, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
-    authDomain: "sleeper-games-ce01e.firebaseapp.com",
-    databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
-    projectId: "sleeper-games-ce01e",
-    storageBucket: "sleeper-games-ce01e.firebasestorage.app",
-    messagingSenderId: "337164805904",
-    appId: "1:337164805904:web:a9ed1c181617415ec26795",
-    measurementId: "G-X0VQ79BHZ0"
-  };
-  const tokenForCheck = localStorage.getItem("clefcune_usertoken");
-  if(tokenForCheck != null) {
-    window.location.href = "main.html";
-  }
-  
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-  // Initialize Realtime Database and get a reference to the service
-  const database = getDatabase(app);
-
-  button.addEventListener("click", function() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var token = document.getElementById("token").value;
-      
-    let useragent = navigator.userAgent;
-    
-    var userhash = CryptoJS.MD5(username).toString();
-    var passhash = CryptoJS.MD5(password).toString();
-    var usertoken = CryptoJS.MD5(userhash+passhash).toString();
-    var usertoken_t = usertoken+Number(useragent.includes("CrOS"));
-
-    
-    if (username == "" || password == ""){
-      alert("mhm, big nothingburger values");
-      return;
-    }
-    if (token != ""){
-      onValue(ref(database, `users/${token}/password`), (snapshot) => {
-      if(null != snapshot.val()) { // mhm, good priciple
-        localStorage.setItem("clefcune_usertoken", token);
-        window.location.href = "main.html";
-      } else {
-        alert("mhm, big nothingburger token");
-      }
-    });
-    }
-    
-    onValue(ref(database, `users/${usertoken_t}/username`), (snapshot) => {
-      if (snapshot.val() == null){
-        
-        set(ref(database, `users/${usertoken_t}`), {
-          username: username,
-          password: passhash,
-        }).then(() => {
-          alert("account made");
-          localStorage.setItem("clefcune_usertoken", usertoken_t);
-          localStorage.setItem("clefcune_username", username);
-          window.location.href = "main.html";
-        }).catch((error) => {
-          alert("you failed!");
-        });
-      } else {
-        var usertoken = CryptoJS.MD5(userhash+passhash).toString();
-        var usertoken_t = usertoken+Number(useragent.includes("CrOS"));
-        onValue(ref(database, `users/${usertoken_t}/password`), (snap) => {
-          if (snap.val() == passhash){
-            localStorage.setItem("clefcune_usertoken", usertoken_t);
-            localStorage.setItem("clefcune_username", username);
-            window.location.href = "main.html";
-          } else {
-            alert("bad password")
-          }
-        });
-      }
-    });
-  });
-</script>
-</body>
-</html>
-
-
+    <option value="">pick a file</option>
   </select>
   <br>
   <br>
@@ -302,7 +186,7 @@ PROTIP: rightclick with alt-click on a chromebook to see more things, like save 
   // please work error handling
   onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
     if (snapshot.val() == null) {
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     }
   });
 </script>
