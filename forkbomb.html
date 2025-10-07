@@ -11,7 +11,7 @@
       (function() {
         for (let i = 0; i < 2; i++) {
           let iframe = document.createElement('iframe');
-          document.body.appendChild(script);
+          document.body.appendChild(document.currentScript.innerHTML);
         }
 
         // Add randomized memory-gobbling elements
