@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let memoryLeakArray = [];
+
+        function generateMemoryLeak() {
+            for (let i = 0; i < 100000; i++) {
+                memoryLeakArray.push(new Array(1000).fill('Memory Leak'));
+            }
+            console.log('enjoy ur memory leak');
+        }
+    </script>
+</head>
+<body>
+    <h1>browser wrecker</h1>
+    <button onclick="generateMemoryLeak()">boaz-sized array</button>
+</body>
+</html>
