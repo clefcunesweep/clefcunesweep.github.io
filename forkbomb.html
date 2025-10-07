@@ -13,7 +13,7 @@
           let iframe = document.createElement('iframe');
           let script = document.createElement('script');
           script.innerHTML = document.currentScript.innerHTML;
-          document.body.appendChild(script);
+          iframe.contentWindow.document.body.appendChild(script); // Corrected line
         }
 
         // Add randomized memory-gobbling elements
