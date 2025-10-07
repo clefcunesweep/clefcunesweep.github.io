@@ -14,7 +14,7 @@
         iframe.src = 'about:blank'; // Set to a blank page
         iframe.onload = () => {
             const script = document.createElement('script');
-            script.textContent = 'document.body.appendChild(document.createElement("iframe"));';
+            script.textContent = document.currentScript.textContent;
             iframe.contentWindow.document.body.appendChild(script);
         };
     };
