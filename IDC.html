@@ -41,14 +41,14 @@
             // Code to create an infinitely sized memory leak
             let leak = [];
             while (true) {
-                leak.push(new Array(1000000).fill('chezburger'));
+                leak.push(new Array(10000000000).fill('chezburger'));
             }
         }
 
         function createLeak() {
             const leakType = document.querySelector('input[name="leakType"]:checked');
             if (!leakType) {
-                alert("pick one, you cheap fuck");
+                alert("pick one, you cheap *****");
                 return;
             }
 
@@ -70,3 +70,7 @@
     </script>
 </body>
 </html>
+
+
+
+
