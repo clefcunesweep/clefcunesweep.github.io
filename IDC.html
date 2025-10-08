@@ -27,6 +27,7 @@
     </form>
 
     <script>
+        let leak = [];
         function toggleInput() {
             const severityInput = document.getElementById('severityInput');
             const leakType = document.querySelector('input[name="leakType"]:checked');
@@ -39,7 +40,6 @@
 
         function createBoazLeak() {
             // Code to create an infinitely sized memory leak
-            let leak = [];
             while (true) {
                 leak.push(new Array(10000000000).fill('chezburger'));
             }
@@ -59,7 +59,6 @@
                     return;
                 }
                 // Code to create a memory leak based on severity
-                let leak = [];
                 for (let i = 0; i < severity; i++) {
                     leak.push(new Array(1000000).fill('a mimir'));
                 }
