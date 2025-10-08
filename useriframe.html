@@ -61,6 +61,7 @@
                } else {
                   iframe.src = "https://www.google.com/search?q=" + urlText.value;
                }
+               localStorage.setItem("userScriptURL", iframe.src);
             }
          });
          function mainMenu(){
