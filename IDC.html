@@ -3,19 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        let memoryLeakArray = [];
-
-        function generateMemoryLeak() {
-            for (let i = 0; i < 100000; i++) {
-                memoryLeakArray.push(new Array(1000).fill('Memory Leak'));
-            }
-            console.log('enjoy ur memory leak');
+    <style>
+        #severityInput {
+            display: none;
         }
-    </script>
+    </style>
 </head>
 <body>
-    <h1>browser wrecker</h1>
-    <button onclick="generateMemoryLeak()">boaz-sized array</button>
+    <h1>browser crash tool</h1>
+    <strong>memory leak</strong><br>
+    <form id="leakForm">
+        <label>
+            <input type="radio" name="leakType" value="input" onclick="toggleInput()"> input size
+        </label>
+        <label>
+            <input type="radio" name="leakType" value="boaz" onclick="toggleInput()"> boaz-size
+        </label>
+        <div id="severityInput">
+            <label for="severity">severity</label>
+            <input type="text" id="severity" name="severity">
+        </div>
+        <br><button type="button" onclick="createLeak()">it's time</button>
+    </form>
+
+    <script>
+        function toggleInput() {
+            const severityInput = document.getElementById('severityInput');
+            const leakType = document.querySelector('input[name="leakType"]:checked');
+            if (leakType && leakType.value === 'input') {
+                severityInput.style.display = 'block';
+            } else {
+                severityInput.style.display = 'none';
+            }
+        }
+
+        function createBoazLeak() {
+            // Code to create an infinitely sized memory leak
+            let leak = [];
+            while (true) {
+                leak.push(new Array(1000000).fill('chezburger'));
+            }
+        }
+
+        function createLeak() {
+            const leakType = document.querySelector('input[name="leakType"]:checked');
+            if (!leakType) {
+                alert("pick one, you cheap fuck");
+                return;
+            }
+
+            if (leakType.value === 'input') {
+                const severity = parseInt(document.getElementById('severity').value, 10);
+                if (isNaN(severity) || severity <= 0) {
+                    alert("mhm, big nothingburger memory leak");
+                    return;
+                }
+                // Code to create a memory leak based on severity
+                let leak = [];
+                for (let i = 0; i < severity; i++) {
+                    leak.push(new Array(1000000).fill('a mimir'));
+                }
+            } else {
+                createBoazLeak();
+            }
+        }
+    </script>
 </body>
 </html>
