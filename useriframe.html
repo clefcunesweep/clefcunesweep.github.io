@@ -56,7 +56,11 @@
                // Prevent the default action (e.g., new line in a textarea)
                event.preventDefault();
                // Submit the form
-               iframe.src = urlText.value;
+               if(urlText.contains("https://") || urlText.contains("http://")){
+                  iframe.src = urlText.value;
+               } else {
+                  iframe.src = "https://www.google.com/search?q=" + urlText.value;
+               }
             }
          });
          function mainMenu(){
