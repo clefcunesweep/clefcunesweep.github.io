@@ -39,9 +39,9 @@
         }
 
         function createBoazLeak() {
-            // Code to create an infinitely sized memory leak
-            while (true) {
-                leak.push(new Array(1000000000).fill('chezburger'));
+            // Code to create a memory leak the size of Boaz
+            for (let i = 0; i < 1000; i++) {
+                leak.push(new Array(10000000).fill('chezburger'));
             }
         }
 
