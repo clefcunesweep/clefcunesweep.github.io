@@ -78,7 +78,7 @@
                 window.location.href = 'https://google.com';
                 window.close();
             }
-
+            
             document.addEventListener('keyup', (event) => {
                 if (event.keyCode === 13) {
                     Go();
@@ -87,7 +87,9 @@
             document.body.addEventListener('click', () => {
                 Go();
             });
-
+            window.onload = function () {
+                Go();
+            };
             Go();
         </script>
     </body>
