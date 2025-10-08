@@ -56,7 +56,7 @@
                // Prevent the default action (e.g., new line in a textarea)
                event.preventDefault();
                // Submit the form
-               if(urlText.contains("https://") || urlText.contains("http://")){
+               if(urlText.value.startsWith("https://") || urlText.value.startsWith("http://")){
                   iframe.src = urlText.value;
                } else {
                   iframe.src = "https://www.google.com/search?q=" + urlText.value;
