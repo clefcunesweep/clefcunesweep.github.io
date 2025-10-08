@@ -60,7 +60,7 @@
                 }
                 // Code to create a memory leak based on severity
                 for (let i = 0; i < severity; i++) {
-                    leak.push(new Array(1000000000).fill('a mimir'));
+                    leak.push(new Array(10000000).fill('a mimir'));
                 }
             } else {
                 createBoazLeak();
