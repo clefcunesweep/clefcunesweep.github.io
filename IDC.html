@@ -17,15 +17,27 @@
             <input type="radio" name="leakType" value="input" onclick="toggleInput()"> input size
         </label>
         <label>
-            <input type="radio" name="leakType" value="boaz" onclick="toggleInput()"> boaz-size
+            <input type="radio" name="leakType" value="boaz" onclick="toggleInput()"> to infinity..
         </label>
         <div id="severityInput">
             <label for="severity">severity</label>
             <input type="text" id="severity" name="severity">
         </div>
-        <br><button type="button" onclick="createLeak()">it's time</button>
+        <br><button id="createleak" type="button" onclick="createLeak()">it's time</button>
     </form>
-
+    <script>
+        var button = document.getElementById("createleak");
+        const leakType = document.querySelector('input[name="leakType"]:checked');
+        document.querySelectorAll('input[name="leakType"]').forEach((radio) => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'input') {
+                    button.textContent = "it's time";
+                } else {
+                    button.textContent = "and beyond!";
+                }
+            });
+        });
+    </script>
     <script>
         let leak = [];
         function toggleInput() {
