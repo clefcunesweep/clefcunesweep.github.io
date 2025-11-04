@@ -16,12 +16,11 @@
             height: 5vh; /* Use viewport height for responsiveness */
             align-items: left; /* Center items vertically */
          }
-         #console, #mainmenu, #refresh {
+         #console, #mainmenu, #refresh, #upload {
             text-align: center;
             width: 2.5vw;
             height: 100%;
             font-size: 1.25em; /* Increase font size for better visibility */
-            font-size: 1.125em; /* Increase font size for better visibility */
          }
          #url {
             flex: 10; /* Allow the input box to take more space */
@@ -39,6 +38,7 @@
       <div id="topbar">
         <button onclick="mainMenu()" id="mainmenu">✕</button>
         <button onclick="refresh()" id="refresh">⟳</button>
+        <button id="upload">📁</button>
         <input type="text" id="url" placeholder="https://exmaple.com/" autocorrect="off">
         <button onclick="console()" id="console">>_</button>
       </div>
@@ -72,49 +72,61 @@
             history.go(0);
          }
          setInterval(() => {
-    localStorage.setItem("userScriptURL", iframe.src);
-}, 125);
+            if (!iframe.src.includes("blob:")) {
+               localStorage.setItem("userScriptURL", iframe.src);
+            }
+         }, 125);
 
-// ze copy and ze passte
-</script>
+         document.getElementById('upload').addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.html';
+            input.onchange = e => {
+               const file = e.target.files[0];
+               const reader = new FileReader();
+               reader.onload = function(event) {
+                  const blob = new Blob([event.target.result], { type: 'text/html' });
+                  const url = URL.createObjectURL(blob);
+                  iframe.src = url;
+               };
+               reader.readAsText(file);
+            };
+            input.click();
+         });
+      </script>
       <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
-  import { getDatabase, ref, set, onValue, child, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+         // Import the functions you need from the SDKs you need
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+         import { getDatabase, ref, set, onValue, child, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+         // Your web app's Firebase configuration
+         const firebaseConfig = {
+            apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
+            authDomain: "sleeper-games-ce01e.firebaseapp.com",
+            databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
+            projectId: "sleeper-games-ce01e",
+            storageBucket: "sleeper-games-ce01e.firebasestorage.app",
+            messagingSenderId: "337164805904",
+            appId: "1:337164805904:web:a9ed1c181617415ec26795", //leet
+            measurementId: "G-X0VQ79BHZ0"
+         };
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAqPN9hEaytxeVnZUyk8C80DabNpJT5V5Q",
-    authDomain: "sleeper-games-ce01e.firebaseapp.com",
-    databaseURL: "https://sleeper-games-ce01e-default-rtdb.firebaseio.com",
-    projectId: "sleeper-games-ce01e",
-    storageBucket: "sleeper-games-ce01e.firebasestorage.app",
-    messagingSenderId: "337164805904",
-    appId: "1:337164805904:web:a9ed1c181617415ec26795", //leet
-    measurementId: "G-X0VQ79BHZ0"
-  };
+         // Initialize Firebase
+         const app = initializeApp(firebaseConfig);
+         const analytics = getAnalytics(app);
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+         // Initialize Realtime Database and get a reference to the service
+         const database = getDatabase(app);
 
-  // Initialize Realtime Database and get a reference to the service
-  const database = getDatabase(app);
-
-  // my shitty code starts here
-  const usertoken = localStorage.getItem("clefcune_usertoken");
-  var useragent = navigator.userAgent;
-  
-  // please work "error handling"
-  onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
-    if (snapshot.val() == null || usertoken.slice(-1) == 0) {
-      window.location.href = "login.html";
-    }
-  });
-</script>
+         const usertoken = localStorage.getItem("clefcune_usertoken");
+         var useragent = navigator.userAgent;
+         
+         // please work "error handling"
+         onValue(ref(database, `users/${usertoken}/username`), (snapshot) => {
+            if (snapshot.val() == null || usertoken.slice(-1) == 0) {
+               window.location.href = "login.html";
+            }
+         });
+      </script>
    </body>
 </html>
