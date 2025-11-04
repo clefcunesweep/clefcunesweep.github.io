@@ -59,7 +59,7 @@
                if(urlText.value.startsWith("https://") || urlText.value.startsWith("http://")){
                   iframe.src = urlText.value;
                } else {
-                  iframe.src = "https://www.google.com/search?q=" + urlText.value;
+                  iframe.src = "https://" + urlText.value;
                }
                localStorage.setItem("userScriptURL", iframe.src);
             }
