@@ -67,7 +67,17 @@
          function mainMenu(){
             window.location.href = "main.html";
          }
-         
+         function console(){
+            let codeEval = window.prompt("Type script here","alert('hello world');");
+            if (codeEval == null || codeEval == "") {
+               alert("mhm, big nothingburger script");
+            } else {
+               var script = iframe.contentWindow.document.createElement("script");
+               script.type = "text/javascript";
+               script.src = codeEval;
+               iframe.contentWindow.document.body.appendChild(script);
+            }
+         }
          function refresh(){
             history.go(0);
          }
